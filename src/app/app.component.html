@@ -1,19 +1,75 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=">
+
+<app-navbar></app-navbar>
+
+<header class="masthead">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="header-content">
+          <div class="header-content-inner">
+            {{data}}  <h1>New Age is an app landing page that will help you beautifully showcase your new mobile app, or anything else!</h1>
+
+            <form class="form-inline">
+              <label class="sr-only" for="inlineFormInput">User</label>
+              <div class="input-group mb-2 mr-sm-2 mb-sm-2">
+                <div class="input-group-addon"><i class="fa fa-at"></i></div>
+                <input type="text" class="form-control" id="user" placeholder="User">
+              </div>
+              <label class="sr-only" for="inlineFormInputGroup">Password</label>
+              <div class="input-group mb-2 mr-sm-2 mb-sm-2">
+                <div class="input-group-addon"><i class="fa fa-key"></i></div>
+                <input type="password" class="form-control" id="password" placeholder="password">
+              </div>
+              <a href="#download" class="btn btn-outline btn-xl">¡Comenzar!</a>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5">
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://blog.angular.io//">Angular blog</a></h2>
-  </li>
-</ul>
+    </div>
+  </div>
+</header>
+
+<section class="download bg-primary text-center" id="download">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h2 class="section-heading">Discover what all the buzz is about!</h2>
+        <p>Our app is available on any mobile device! Download now to get started!</p>
+        <div class="badges">
+          <a class="badge-link" href="#"><img src="assets/img/google-play-badge.svg" alt=""></a>
+          <a class="badge-link" href="#"><img src="assets/img/app-store-badge.svg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cta">
+  <div class="cta-content">
+    <div class="container">
+      <h2>Stop waiting.<br>Start building.</h2>
+      <a href="#contact" class="btn btn-outline btn-xl">Let's Get Started!</a>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+<section class="contact bg-primary" id="contact">
+  <div class="container">
+    <h2>We <i class="fa fa-heart"></i> new friends!</h2>
+    <ul class="list-inline list-social">
+      <li class="list-inline-item social-twitter">
+        <a href="#"><i class="fa fa-twitter"></i></a>
+      </li>
+      <li class="list-inline-item social-facebook">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+      </li>
+      <li class="list-inline-item social-google-plus">
+        <a href="#"><i class="fa fa-google-plus"></i></a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<app-footer></app-footer>
