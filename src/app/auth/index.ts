@@ -1,1 +1,2 @@
-export * from './auth.service';
+export * from './authoritation.service';
+export * from './authentication.service';
