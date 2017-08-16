@@ -6,21 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 
-export class NavbarComponent implements OnInit {
-  public links: any[] = [
-    {
-      name: 'GitHub',
-      url: 'https://github.com/Libertual/api-client',
-      icon: 'web',
-    },
-    {
-      name: 'Tecnual',
-      url: 'https://github.com/tecnual',
-      icon: 'person',
-    },
-  ];
+export class NavbarComponent {
 
-  constructor() { }
 
-  ngOnInit() { }
 }

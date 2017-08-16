@@ -14,7 +14,6 @@ import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { AuthGuard } from './_guards/index';
 
-
 @NgModule({
   declarations: [
     AlertComponent,
