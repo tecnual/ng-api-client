@@ -9,6 +9,7 @@ import { AlertService, AuthenticationService, UserService } from './_services/in
 import { Routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
+import { HomeModule } from './home/home.module';
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
@@ -26,6 +27,7 @@ import { AuthGuard } from './_guards/index';
     HttpModule,
     FormsModule,
     LayoutModule,
+    HomeModule,
     BrowserModule,
     Routing
   ],

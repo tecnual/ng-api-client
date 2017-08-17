@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { UserService } from '../../_services/index';
+
 
 @Component({
   selector: 'app-navbar',
@@ -6,7 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  name: any;
+  @Input() displayName: string;
 
+  constructor(
+    private userService: UserService,
+  ) { }
 
+  ngOnInit() {
+    // get users from secure api end point
+  }
 }

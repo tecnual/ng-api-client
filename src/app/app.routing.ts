@@ -9,8 +9,7 @@ const appRoutes = [
   {
     path: '',
     component: HomeComponent,
-    canActivate: [AuthGuard],
-    data: { title: 'Tecnual - Home' }
+    canActivate: [AuthGuard]
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

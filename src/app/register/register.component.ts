@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { AlertService, UserService } from '../_services/index';
 
@@ -8,14 +9,21 @@ import { AlertService, UserService } from '../_services/index';
     templateUrl: 'register.component.html'
 })
 
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
     model: any = {};
     loading = false;
+    title = 'Tecnual - Register';
 
     constructor(
         private router: Router,
         private userService: UserService,
+        private titleService: Title,
         private alertService: AlertService) { }
+
+        ngOnInit() {
+            // reset login status
+          this.titleService.setTitle(this.title);
+        }
 
     register() {
         this.loading = true;
@@ -27,7 +35,9 @@ export class RegisterComponent {
                     this.router.navigate(['/login']);
                 },
                 error => {
-                    this.alertService.error(error);
+                    const response = JSON.parse(error._body);
+                    console.log(error);
+                    this.alertService.error(response.message);
                     this.loading = false;
                 });
     }

@@ -12,7 +12,11 @@ export class UserService {
     }
 
     getById(id: number) {
-        return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get('/auth/users/' + id, this.jwt()).map((response: Response) => response.json());
+    }
+
+    getSettings() {
+        return this.http.get('http://192.168.1.150:3000/account/settings/', this.jwt()).map((response: Response) => response.json());
     }
 
     create(user: User) {

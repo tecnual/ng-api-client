@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { NavbarComponent } from './index';
-
-
+import { AlertService, AuthenticationService } from '../_services/index';
 
 @NgModule({
   imports: [
     RouterModule
   ],
   declarations: [
-    NavbarComponent,
   ],
   exports: [
-    NavbarComponent,
   ],
+  providers: [
+    AlertService,
+    AuthenticationService
+  ]
 })
 
-export class NavbarModule { }
+export class HomeModule { }
