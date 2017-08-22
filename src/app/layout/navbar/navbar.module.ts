@@ -1,20 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { NavbarComponent } from './index';
-
-
+import { AlertComponent } from '../../_directives/index';
+import { AlertService, AuthenticationService } from '../../_services/index';
 
 @NgModule({
   imports: [
-    RouterModule
+    RouterModule,
+    CommonModule
   ],
   declarations: [
-    NavbarComponent,
+    AlertComponent,
+    NavbarComponent
   ],
   exports: [
-    NavbarComponent,
+    NavbarComponent
   ],
+  providers: [
+    AlertService,
+    AuthenticationService
+  ]
 })
 
 export class NavbarModule { }

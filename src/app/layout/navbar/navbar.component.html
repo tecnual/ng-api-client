@@ -1,8 +1,9 @@
-<!-- Navigation -->
-<nav class="navbar fixed-top navbar-toggleable-md navbar-light" id="mainNav">
+<alert></alert>
+<!-- LOGGED IN -->
+<nav *ngIf="loggedIn" class="navbar fixed-top navbar-toggleable-md navbar-light" id="mainNav">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
-          {{name}} <i class="fa fa-user"></i>
-      </button>
+        {{user.displayName}} <i class="fa fa-user"></i>
+  </button>
   <div class="container">
     <a class="navbar-brand" href="#page-top">Tecnual</a>
     <div class="collapse navbar-collapse" id="navbarExample">
@@ -11,10 +12,26 @@
           <a class="nav-link" [routerLink]="['/login']">Logout</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#features">{{displayName}}</a>
+          <a class="nav-link" [routerLink]="['/settings']">Settings</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- NOT LOGGED IN -->
+<nav *ngIf="!loggedIn" class="navbar fixed-top navbar-toggleable-md navbar-light" id="mainNav">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+        Menu <i class="fa fa-bars"></i>
+  </button>
+  <div class="container">
+    <a class="navbar-brand" href="#page-top">Tecnual</a>
+    <div class="collapse navbar-collapse" id="navbarExample">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/login']">Sing in</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#contact">Contact</a>
+          <a class="nav-link btn-outline" [routerLink]="['/register']">Register</a>
         </li>
       </ul>
     </div>
