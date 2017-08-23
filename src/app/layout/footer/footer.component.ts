@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 
-export class FooterComponent implements OnInit {
+export class FooterComponent {
   public links: any[] = [
     {
       name: 'GitHub',
@@ -25,7 +25,4 @@ export class FooterComponent implements OnInit {
     },
   ];
 
-  constructor() { }
-
-  ngOnInit() { }
 }
