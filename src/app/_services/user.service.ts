@@ -23,6 +23,12 @@ export class UserService {
         return this.http.post('http://192.168.1.150:3000/auth/register', user, this.jwt()).map((response: Response) => response.json());
     }
 
+    changeSettings(user: User) {
+        return this.http.put(
+          'http://192.168.1.150:3000/account/settings',
+          user,
+          this.jwt()).map((response: Response) => response.json());
+    }
     update(user: User) {
         return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
     }

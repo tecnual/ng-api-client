@@ -49,20 +49,25 @@ export class SettingsComponent implements OnInit {
 
   changeSettings() {
     this.loading = true;
-    this.userService.create(this.user)
+    this.userService.changeSettings(this.user)
       .subscribe(
       data => {
         // set success message and pass true paramater to persist the message after redirecting to the login page
+        console.log(data);
         this.alertService.success('Successful changes', true);
-        this.router.navigate(['/login']);
+        this.loading = false;
       },
       error => {
-        console.log(error.status);
-        if (error.status !== 0) {
-          const response = JSON.parse(error._body);
-          this.alertService.error(response.message);
-        } else {
-          this.alertService.error('No hay conexión con el servicio API RESTFull');
+        console.log(error);
+        try {
+          if (error.status !== 0) {
+            const response = JSON.parse(error._body);
+            this.alertService.error(response.message);
+          } else {
+            this.alertService.error('No hay conexión con el servicio API RESTFull');
+          }
+        } catch (e) {
+          this.alertService.error('Unexpected error!');
         }
         this.loading = false;
       });

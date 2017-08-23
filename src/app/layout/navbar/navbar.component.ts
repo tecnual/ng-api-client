@@ -23,7 +23,6 @@ export class NavbarComponent implements OnInit {
         this.loggedIn = r;
       });
   }
-
   ngOnInit() {
     // get users from secure api end point
     // get users from secure api end point
@@ -44,7 +43,7 @@ export class NavbarComponent implements OnInit {
         // const response = JSON.parse(err._body);
         if (err.status !== 0) {
           const response = JSON.parse(err._body);
-          this.alertService.error(response.message);
+          // this.alertService.error(response.message);
         } else {
           this.alertService.error('No hay conexión con el servicio API RESTFull');
         }
