@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Alert, AlertType } from '../_models/index';
-import { AlertService } from '../_services/index';
+import { AlertModel, AlertTypeModel } from '../_models/index';
+import { AlertsService } from '../_services/index';
 
 @Component({
-    moduleId: module.id,
     selector: 'alert',
-    templateUrl: 'alert.component.html'
+    templateUrl: '../_views/alerts.component.html'
 })
 
-export class AlertComponent implements OnInit {
-    alerts: Alert[] = [];
+export class AlertsComponent implements OnInit {
+    alerts: AlertModel[] = [];
 
-    constructor(private alertService: AlertService) { }
+    constructor(private alertsService: AlertsService) { }
 
     ngOnInit() {
-        this.alertService.getAlert().subscribe((alert: Alert) => {
+        this.alertsService.getAlert().subscribe((alert: AlertModel) => {
             if (!alert) {
                 // clear alerts when an empty alert is received
                 this.alerts = [];
@@ -27,24 +26,24 @@ export class AlertComponent implements OnInit {
         });
     }
 
-    removeAlert(alert: Alert) {
+    removeAlert(alert: AlertModel) {
         this.alerts = this.alerts.filter(x => x !== alert);
     }
 
-    cssClass(alert: Alert) {
+    cssClass(alert: AlertModel) {
         if (!alert) {
             return;
         }
 
         // return css class based on alert type
         switch (alert.type) {
-            case AlertType.Success:
+            case AlertTypeModel.Success:
                 return 'alert alert-success';
-            case AlertType.Error:
+            case AlertTypeModel.Error:
                 return 'alert alert-danger';
-            case AlertType.Info:
+            case AlertTypeModel.Info:
                 return 'alert alert-info';
-            case AlertType.Warning:
+            case AlertTypeModel.Warning:
                 return 'alert alert-warning';
         }
     }

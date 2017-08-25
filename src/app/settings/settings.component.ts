@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { Subject, ReplaySubject, Observable } from 'rxjs/Rx';
 
-import { AlertService, AuthenticationService, UserService } from '../_services/index';
+
+import { AuthenticationService, UserService } from '../_services/index';
+import { AlertsService } from '../_modules/alerts/_services';
 import { User } from '../_models/index';
 
 @Component({
@@ -13,48 +16,32 @@ import { User } from '../_models/index';
 export class SettingsComponent implements OnInit {
   loading = false;
   title = 'Tecnual - Settings';
-  user = new User;
-
+  user: User;
   constructor(
+    private newUser: User,
     private router: Router,
     private userService: UserService,
     private titleService: Title,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService) { }
+    private alertsService: AlertsService) {
+      this.authenticationService.whoAmI()
+        .subscribe(r => {
+          this.user = r;
+        });
+    }
 
   ngOnInit() {
     // reset login status
     this.titleService.setTitle(this.title);
-    this.authenticationService.getSettings()
-      .subscribe(result => {
-        this.user = result.user;
-        if (result) {
-          console.log(result);
-        } else {
-          console.log(result);
-          console.log('Incorrecto: ');
-        }
-      },
-      err => {
-        console.log(err.status);
-        // const response = JSON.parse(err._body);
-        if (err.status !== 0) {
-          const response = JSON.parse(err._body);
-          this.alertService.error(response.message);
-        } else {
-          this.alertService.error('No hay conexión con el servicio API RESTFull');
-        }
-      });
   }
-
-  changeSettings() {
+  saveSettings() {
     this.loading = true;
-    this.userService.changeSettings(this.user)
+    this.userService.saveSettings(this.user)
       .subscribe(
       data => {
         // set success message and pass true paramater to persist the message after redirecting to the login page
         console.log(data);
-        this.alertService.success('Successful changes', true);
+        this.alertsService.success('Successful changes', true);
         this.loading = false;
       },
       error => {
@@ -62,12 +49,12 @@ export class SettingsComponent implements OnInit {
         try {
           if (error.status !== 0) {
             const response = JSON.parse(error._body);
-            this.alertService.error(response.message);
+            this.alertsService.error(response.message);
           } else {
-            this.alertService.error('No hay conexión con el servicio API RESTFull');
+            this.alertsService.error('No hay conexión con el servicio API RESTFull');
           }
         } catch (e) {
-          this.alertService.error('Unexpected error!');
+          this.alertsService.error('Unexpected error!');
         }
         this.loading = false;
       });
