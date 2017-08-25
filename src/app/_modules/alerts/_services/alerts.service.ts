@@ -3,11 +3,11 @@ import { Router, NavigationStart } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 
-import { Alert, AlertType } from '../_models/index';
+import { AlertModel, AlertTypeModel } from '../_models/';
 
 @Injectable()
-export class AlertService {
-    private subject = new Subject<Alert>();
+export class AlertsService {
+    private subject = new Subject<AlertModel>();
     private keepAfterRouteChange = false;
 
     constructor(private router: Router) {
@@ -30,24 +30,24 @@ export class AlertService {
     }
 
     success(message: string, keepAfterRouteChange = false) {
-        this.alert(AlertType.Success, message, keepAfterRouteChange);
+        this.alert(AlertTypeModel.Success, message, keepAfterRouteChange);
     }
 
     error(message: string, keepAfterRouteChange = false) {
-        this.alert(AlertType.Error, message, keepAfterRouteChange);
+        this.alert(AlertTypeModel.Error, message, keepAfterRouteChange);
     }
 
     info(message: string, keepAfterRouteChange = false) {
-        this.alert(AlertType.Info, message, keepAfterRouteChange);
+        this.alert(AlertTypeModel.Info, message, keepAfterRouteChange);
     }
 
     warn(message: string, keepAfterRouteChange = false) {
-        this.alert(AlertType.Warning, message, keepAfterRouteChange);
+        this.alert(AlertTypeModel.Warning, message, keepAfterRouteChange);
     }
 
-    alert(type: AlertType, message: string, keepAfterRouteChange = false) {
+    alert(type: AlertTypeModel, message: string, keepAfterRouteChange = false) {
         this.keepAfterRouteChange = keepAfterRouteChange;
-        this.subject.next(<Alert>{ type: type, message: message });
+        this.subject.next(<AlertModel>{ type: type, message: message });
     }
 
     clear() {

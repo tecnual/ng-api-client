@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
-
-import { AlertService, AuthenticationService } from '../_services/index';
-
 import { Http, Headers, Response } from '@angular/http';
+
+import { AuthenticationService } from '../_services/index';
+import { AlertsService } from '../_modules/alerts/_services';
 
 import 'rxjs/add/operator/catch';
 
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       private titleService: Title,
       private _http: Http,
       private authenticationService: AuthenticationService,
-      private alertService: AlertService
+      private alertsService: AlertsService
     ) { }
 
     ngOnInit() {
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           err => {
             const response = JSON.parse(err._body);
             console.log('DATA: ', response.message);
-            this.alertService.error(response.message);
+            this.alertsService.error(response.message);
             this.error = response.message;
             this.loading = false;
           });

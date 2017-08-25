@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { AlertService, UserService } from '../_services/index';
+import { UserService } from '../_services/index';
+import { AlertsService } from '../_modules/alerts/_services';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +19,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private titleService: Title,
-    private alertService: AlertService) { }
+    private alertsService: AlertsService) { }
 
   ngOnInit() {
     // reset login status
@@ -31,7 +32,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(
       data => {
         // set success message and pass true paramater to persist the message after redirecting to the login page
-        this.alertService.success('Registration successful', true);
+        this.alertsService.success('Registration successful', true);
         this.router.navigate(['/login']);
       },
       error => {
@@ -39,19 +40,19 @@ export class RegisterComponent implements OnInit {
         switch (error.status) {
           case 403: {
             const response = JSON.parse(error._body);
-            this.alertService.error('No estás conectado');
+            this.alertsService.error('No estás conectado');
             break;
           }
           case 422: {
-            this.alertService.error('No hay conexión con el servicio API RESTFull');
+            this.alertsService.error('No hay conexión con el servicio API RESTFull');
             break;
           }
           case 0: {
-            this.alertService.error('No hay conexión con el servicio API RESTFull');
+            this.alertsService.error('No hay conexión con el servicio API RESTFull');
             break;
           }
           default: {
-            this.alertService.error('Error inesperado');
+            this.alertsService.error('Error inesperado');
             break;
           }
         }

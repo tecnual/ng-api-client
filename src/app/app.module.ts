@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-import { AlertComponent } from './_directives';
-import { AlertService, AuthenticationService, UserService } from './_services/index';
+import { AuthenticationService, UserService } from './_services/index';
 import { Routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
@@ -14,10 +13,11 @@ import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { SettingsComponent } from './settings/index';
 import { AuthGuard } from './_guards/index';
+import { User } from './_models/index';
+import { AlertsModule } from './_modules/alerts/alerts.module';
 
 @NgModule({
   declarations: [
-    AlertComponent,
     AppComponent,
     HomeComponent,
     LoginComponent,
@@ -27,16 +27,17 @@ import { AuthGuard } from './_guards/index';
   imports: [
     HttpModule,
     FormsModule,
+    AlertsModule,
     LayoutModule,
     HomeModule,
     BrowserModule,
     Routing
   ],
   providers: [
-    AlertService,
     AuthGuard,
     AuthenticationService,
-    UserService
+    UserService,
+    User
   ],
   bootstrap: [AppComponent]
 })

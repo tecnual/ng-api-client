@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AlertService, AuthenticationService } from '../_services/index';
+import { AuthenticationService } from '../_services/index';
+import { AlertsService } from '../_modules/alerts/_services';
 
 @NgModule({
   imports: [
@@ -12,7 +13,7 @@ import { AlertService, AuthenticationService } from '../_services/index';
   exports: [
   ],
   providers: [
-    AlertService,
+    AlertsService,
     AuthenticationService
   ]
 })
