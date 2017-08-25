@@ -52,6 +52,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
   <script>
+  // TODO: Incluir este script en algun modulo.
   $(document).click(function (event) {
 
       var clickover = $(event.target);
@@ -61,15 +62,6 @@
           $navbar.collapse('hide');
       }
   });
-  $(function() {
-     $(document).on('click', '.alert-close', function() {
-          alert('hola');
-         $(this).parent().hide();
-         // $(this).parent().show();
-
-     });
-  });
-
   </script>
   <!--
   <script src="assets/vendor/jquery/jquery.min.js"></script>
