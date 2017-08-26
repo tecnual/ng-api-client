@@ -2,39 +2,38 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { UserService } from '../_services/index';
-import { AlertsService } from '../_modules/alerts/_services';
+import { StoriesService } from '../_services/';
+import { AlertsService } from '../../../_modules/alerts/_services';
 
 @Component({
-  moduleId: module.id,
-  templateUrl: 'register.component.html'
+  selector: 'app-create-story',
+  templateUrl: './create-story.component.html',
+  styleUrls: ['./create-story.component.scss']
 })
-
-export class RegisterComponent implements OnInit {
-  model: any = {};
-  loading = false;
-  title = 'Tecnual - Register';
+export class CreateStoryComponent implements OnInit {
+    model: any = {};
+    loading = false;
 
   constructor(
     private router: Router,
-    private userService: UserService,
+    private storiesService: StoriesService,
     private titleService: Title,
     private alertsService: AlertsService
   ) { }
 
   ngOnInit() {
-    // reset login status
-    this.titleService.setTitle(this.title);
   }
-
-  register() {
+  publishStory() {
     this.loading = true;
-    this.userService.create(this.model)
+    this.storiesService.newStory(this.model)
       .subscribe(
       data => {
         // set success message and pass true paramater to persist the message after redirecting to the login page
-        this.alertsService.success('Registration successful', true);
-        this.router.navigate(['/login']);
+        console.log(data);
+
+        this.alertsService.success(data.message, true);
+        // this.router.navigate(['/']);
+        this.loading = false;
       },
       error => {
         console.log(error.status);
@@ -57,7 +56,6 @@ export class RegisterComponent implements OnInit {
             break;
           }
         }
-
         this.loading = false;
       });
   }
