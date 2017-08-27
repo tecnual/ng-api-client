@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { StoriesRoutingModule } from './stories-routing.module';
 import { CreateStoryComponent } from './create-story/create-story.component';
+import { UserTimelineComponent } from './user-timeline/user-timeline.component';
 import { StoriesService } from './_services/stories.service';
 
 @NgModule({
@@ -12,7 +13,10 @@ import { StoriesService } from './_services/stories.service';
     CommonModule,
     StoriesRoutingModule
   ],
-  declarations: [CreateStoryComponent],
+  declarations: [
+    CreateStoryComponent,
+    UserTimelineComponent
+  ],
   providers: [
     StoriesService
   ]

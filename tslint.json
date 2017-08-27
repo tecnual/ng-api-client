@@ -42,14 +42,18 @@
     ],
     "no-arg": true,
     "no-bitwise": true,
-    "no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
+    "no-console": {
+      "rule": "always",
+      "options": [
+        "log",
+        "debug",
+        "info",
+        "time",
+        "timeEnd",
+        "trace"
+      ],
+      "severity": "warning"
+    },
     "no-construct": true,
     "no-debugger": true,
     "no-duplicate-super": true,

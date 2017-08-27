@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/login']);
       },
       error => {
-        console.log(error.status);
+        // console.log(error.status);
         switch (error.status) {
           case 403: {
             const response = JSON.parse(error._body);

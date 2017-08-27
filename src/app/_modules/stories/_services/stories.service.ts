@@ -10,6 +10,14 @@ export class StoriesService {
     newStory(story: Story) {
         return this.http.post('http://192.168.1.150:3000/stories/new', story, this.jwt()).map((response: Response) => response.json());
     }
+    getUserStories(displayName: string) {
+      return this.http.get(
+        'http://192.168.1.150:3000/stories/user_timeline/' + displayName,
+        this.jwt())
+        .map((
+          response: Response
+        ) => response.json());
+    }
 
     // private helper methods
 

@@ -30,7 +30,7 @@ export class UserService {
           this.jwt()).map((response: Response) => response.json());
     }
     update(user: User) {
-        return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
+        return this.http.put('/api/users/' + user._id, user, this.jwt()).map((response: Response) => response.json());
     }
 
     delete(id: number) {
