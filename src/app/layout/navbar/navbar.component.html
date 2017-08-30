@@ -10,8 +10,21 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/']">Home</a>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Stories
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" [routerLink]="['/create-story']">Create History</a>
+            <a class="dropdown-item" [routerLink]="['/']">Another action</a>
+            <a class="dropdown-item" [routerLink]="['/']">Something else here</a>
+          </div>
+        </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/login']">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/', user.displayName]">Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/settings']">Settings</a>

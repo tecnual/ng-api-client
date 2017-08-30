@@ -15,6 +15,7 @@ import { SettingsComponent } from './settings/index';
 import { AuthGuard } from './_guards/index';
 import { User } from './_models/index';
 import { AlertsModule } from './_modules/alerts/alerts.module';
+import { StoriesModule } from './_modules/stories/stories.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AlertsModule } from './_modules/alerts/alerts.module';
     HttpModule,
     FormsModule,
     AlertsModule,
+    StoriesModule,
     LayoutModule,
     HomeModule,
     BrowserModule,

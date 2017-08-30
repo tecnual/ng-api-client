@@ -15,22 +15,22 @@ export class AuthenticationService {
       this.getSettings()
         .subscribe(result => {
           if (result) {
-            console.log('result' + JSON.stringify(result.user));
+            // console.log('result' + JSON.stringify(result.user));
             this.logged.next(true);
             this.user.next(result.user);
           } else {
-            console.log(result);
-            console.log('Incorrecto: ');
+            // console.log(result);
+            console.error('Incorrecto: ');
           }
         },
         err => {
-          console.log(err.status);
+          // console.log(err.status);
           // const response = JSON.parse(err._body);
           if (err.status !== 0) {
             const response = JSON.parse(err._body);
             // this.alertService.error(response.message);
           } else {
-            console.log('No hay conexión con el servicio API RESTFull');
+            // console.log('No hay conexión con el servicio API RESTFull');
           }
         });
     }

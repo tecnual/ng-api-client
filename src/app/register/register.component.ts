@@ -19,7 +19,8 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private titleService: Title,
-    private alertsService: AlertsService) { }
+    private alertsService: AlertsService
+  ) { }
 
   ngOnInit() {
     // reset login status
@@ -36,7 +37,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/login']);
       },
       error => {
-        console.log(error.status);
+        // console.log(error.status);
         switch (error.status) {
           case 403: {
             const response = JSON.parse(error._body);
