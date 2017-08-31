@@ -3,10 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
+import { AppRoutingModule } from './app.routing';
 import { AuthenticationService, UserService } from './_services/index';
-import { Routing } from './app.routing';
 import { AppComponent } from './app.component';
-import { LayoutModule } from './layout/layout.module';
 import { HomeModule } from './home/home.module';
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
@@ -16,6 +15,13 @@ import { AuthGuard } from './_guards/index';
 import { User } from './_models/index';
 import { AlertsModule } from './_modules/alerts/alerts.module';
 import { StoriesModule } from './_modules/stories/stories.module';
+import { FooterModule } from './_modules/footer/footer.module';
+import { NavbarModule } from './_modules/navbar/navbar.module';
+import { FullLayoutComponent } from './_modules/layouts/full-layout.component';
+import { SimpleLayoutComponent } from './_modules/layouts/simple-layout.component';
+
+
+import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -23,17 +29,21 @@ import { StoriesModule } from './_modules/stories/stories.module';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    SettingsComponent
+    SettingsComponent,
+    FullLayoutComponent,
+    SimpleLayoutComponent,
+    BreadcrumbsComponent,
   ],
   imports: [
     HttpModule,
     FormsModule,
+    AppRoutingModule,
     AlertsModule,
     StoriesModule,
-    LayoutModule,
     HomeModule,
     BrowserModule,
-    Routing
+    FooterModule,
+    NavbarModule
   ],
   providers: [
     AuthGuard,

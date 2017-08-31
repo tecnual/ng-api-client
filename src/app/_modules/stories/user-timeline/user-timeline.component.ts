@@ -13,7 +13,7 @@ import { User } from '../../../_models/';
 export class UserTimelineComponent implements OnInit {
   name: string;
   stories: Story[];
-  user: User;
+  user = new User;
 
   constructor(
     private route: ActivatedRoute,

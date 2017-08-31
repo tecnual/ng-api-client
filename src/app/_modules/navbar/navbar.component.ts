@@ -6,8 +6,7 @@ import { User } from '../../_models/index';
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  templateUrl: '../../layout/default/navbar.component.html',
 })
 
 export class NavbarComponent implements OnInit {
@@ -27,9 +26,7 @@ export class NavbarComponent implements OnInit {
       });
   }
   ngOnInit() {
-    // get users from secure api end point
-    // get users from secure api end point
-    console.log('loggedIn: ' + JSON.stringify(this.loggedIn));
-    console.log('whoAmI: ' + JSON.stringify(this.user));
+    // console.log('loggedIn: ' + JSON.stringify(this.loggedIn));
+    // console.log('whoAmI: ' + JSON.stringify(this.user));
   }
 }

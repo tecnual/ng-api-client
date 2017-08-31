@@ -1,4 +1,5 @@
-import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import { CreateStoryComponent } from './_modules/stories/create-story/create-story.component';
 import { LoginComponent } from './login/index';
@@ -7,21 +8,45 @@ import { SettingsComponent } from './settings/index';
 import { UserTimelineComponent } from './_modules/stories/user-timeline/user-timeline.component';
 import { HomeComponent } from './home/index';
 import { AuthGuard } from './_guards/index';
+import { FullLayoutComponent } from './_modules/layouts/full-layout.component';
+import { SimpleLayoutComponent } from './_modules/layouts/simple-layout.component';
 
-const appRoutes = [
+export const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    canActivate: [AuthGuard]
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
   },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'create-story', component: CreateStoryComponent },
-  { path: ':displayName', component: UserTimelineComponent },
-
-  // otherwise redirect to home
-  { path: '**', redirectTo: '' }
+  {
+    path: '',
+    component: FullLayoutComponent,
+    data: {
+      title: 'Home'
+    },
+    children: [
+      {
+        path: 'dashboard',
+        loadChildren: './_modules/dashboard/dashboard.module#DashboardModule'
+      }
+    ]
+  },
+  {
+    path: 'pages',
+    component: SimpleLayoutComponent,
+    data: {
+      title: 'Pages'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './pages/pages.module#PagesModule',
+      }
+    ]
+  }
 ];
 
-export const Routing = RouterModule.forRoot(appRoutes);
+@NgModule({
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
+})
+export class AppRoutingModule {}
