@@ -20,7 +20,7 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "styles.scss"
+        "./app/layout/default/scss/style.scss"
       ],
       "scripts": [
 

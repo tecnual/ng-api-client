@@ -3,8 +3,7 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   moduleId: module.id,
-  templateUrl: 'home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: '../layout/default/home.component.html',
 })
 
 export class HomeComponent implements OnInit {
