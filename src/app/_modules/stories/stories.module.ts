@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { CreateStoryComponent } from './create-story/create-story.component';
-import { UserTimelineComponent } from './user-timeline/user-timeline.component';
+import { CreateStoryComponent } from './create-story.component';
+import { UserTimelineComponent } from './user-timeline.component';
 import { StoryComponent } from './story/story.component';
 
 import { StoriesService } from './_services/stories.service';

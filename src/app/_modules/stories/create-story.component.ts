@@ -2,15 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { StoriesService } from '../_services/';
-import { AlertsService } from '../../../_modules/alerts/_services';
-import { AuthenticationService, UserService } from '../../../_services/';
-import { User } from '../../../_models/';
+import { StoriesService } from './_services/';
+import { AlertsService } from '../../_modules/alerts/_services';
+import { AuthenticationService, UserService } from '../../_services/';
+import { User } from '../../_models/';
 
 @Component({
-  selector: 'app-create-story',
-  templateUrl: './create-story.component.html',
-  styleUrls: ['./create-story.component.scss']
+  selector: 'app-new-story',
+  templateUrl: '../../layout/default/new-story.component.html',
 })
 export class CreateStoryComponent implements OnInit {
     model: any = {};

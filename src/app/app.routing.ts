@@ -2,11 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CreateStoryComponent } from './_modules/stories/create-story/create-story.component';
-import { LoginComponent } from './login/index';
-import { RegisterComponent } from './register/index';
-import { SettingsComponent } from './settings/index';
-import { UserTimelineComponent } from './_modules/stories/user-timeline/user-timeline.component';
-import { HomeComponent } from './home/index';
+import { RegisterComponent } from './_modules/user/register.component';
+import { SettingsComponent } from './_modules/user/settings.component';
+import { UserTimelineComponent } from './_modules/stories/user-timeline.component';
 import { AuthGuard } from './_guards/index';
 import { FullLayoutComponent } from './_modules/layouts/full-layout.component';
 import { SimpleLayoutComponent } from './_modules/layouts/simple-layout.component';
@@ -15,11 +13,12 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: 'dashboard',
-    pathMatch: 'full',
+    pathMatch: 'full'
   },
   {
     path: '',
     component: FullLayoutComponent,
+    canActivate: [AuthGuard],
     data: {
       title: 'Home'
     },
@@ -31,15 +30,41 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'pages',
+    path: 'user',
     component: SimpleLayoutComponent,
     data: {
-      title: 'Pages'
+      title: 'User'
     },
     children: [
       {
         path: '',
-        loadChildren: './pages/pages.module#PagesModule',
+        loadChildren: './_modules/user/user.module#UserModule',
+      }
+    ]
+  },
+  {
+    path: 'account',
+    component: FullLayoutComponent,
+    data: {
+      title: 'account'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './_modules/user/user.module#UserModule',
+      }
+    ]
+  },
+  {
+    path: 'beats',
+    component: FullLayoutComponent,
+    data: {
+      title: 'Beats'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './_modules/stories/stories.module#StoriesModule',
       }
     ]
   }

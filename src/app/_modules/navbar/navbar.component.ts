@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthenticationService } from '../../_services/index';
-
 import { User } from '../../_models/index';
 
 @Component({
@@ -10,7 +9,6 @@ import { User } from '../../_models/index';
 })
 
 export class NavbarComponent implements OnInit {
-  name: any;
   user = new User;
   loggedIn: boolean;
   constructor(

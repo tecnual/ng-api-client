@@ -23,6 +23,7 @@ export class NavDropdownToggleDirective {
 
   @HostListener('click', ['$event'])
   toggleOpen($event: any) {
+    console.log('dropdown');
     $event.preventDefault();
     this.dropdown.toggle();
   }

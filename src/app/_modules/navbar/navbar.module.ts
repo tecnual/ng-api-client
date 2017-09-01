@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+
 import { NavbarComponent } from './index';
 import { AuthenticationService } from '../../_services/index';
-
-import { SIDEBAR_TOGGLE_DIRECTIVES } from '../../shared/sidebar.directive';
 
 @NgModule({
   imports: [
@@ -13,8 +12,7 @@ import { SIDEBAR_TOGGLE_DIRECTIVES } from '../../shared/sidebar.directive';
     CommonModule
   ],
   declarations: [
-    NavbarComponent,
-    SIDEBAR_TOGGLE_DIRECTIVES
+    NavbarComponent
   ],
   exports: [
     NavbarComponent
