@@ -10,6 +10,7 @@ import { User } from '../../_models/index';
 
 export class NavbarComponent implements OnInit {
   user = new User;
+  gravatar: string;
   loggedIn: boolean;
   constructor(
     private authenticationService: AuthenticationService,
@@ -24,6 +25,7 @@ export class NavbarComponent implements OnInit {
       });
   }
   ngOnInit() {
+
     // console.log('loggedIn: ' + JSON.stringify(this.loggedIn));
     // console.log('whoAmI: ' + JSON.stringify(this.user));
   }

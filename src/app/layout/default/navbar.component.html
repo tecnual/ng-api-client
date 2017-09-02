@@ -25,8 +25,8 @@
     </li>
     <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
       <a href class="nav-link dropdown-toggle" dropdownToggle (click)="false">
-        <img src="assets/img/avatars/1.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-        <span class="d-md-down-none">{{user.displayName}}</span>
+        <img src="{{ user.avatar }}" class="img-avatar" alt="admin@bootstrapmaster.com">
+        <span class="d-md-down-none">{{ user.displayName }}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
 

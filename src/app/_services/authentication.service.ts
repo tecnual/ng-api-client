@@ -16,7 +16,7 @@ export class AuthenticationService {
       this.getSettings()
         .subscribe(result => {
           if (result) {
-            // console.log('result' + JSON.stringify(result.user));
+            // console.log('result' + JSON.stringify(result));
             this.logged.next(true);
             this.connected.next(true);
             this.user.next(result.user);
