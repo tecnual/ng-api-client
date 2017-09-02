@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-
 import { AppRoutingModule } from './app.routing';
 import { AuthenticationService, UserService } from './_services/index';
 import { AppComponent } from './app.component';

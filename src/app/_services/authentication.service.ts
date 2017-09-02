@@ -9,6 +9,7 @@ import { User } from '../_models/index';
 @Injectable()
 export class AuthenticationService {
     private logged = new ReplaySubject<boolean>(1); // Resend 1 old value to new subscribers
+    private connected = new ReplaySubject<boolean>(1); // Resend 1 old value to new subscribers
     private user = new ReplaySubject<User>(null);
 
     constructor(private http: Http) {
@@ -17,6 +18,7 @@ export class AuthenticationService {
           if (result) {
             // console.log('result' + JSON.stringify(result.user));
             this.logged.next(true);
+            this.connected.next(true);
             this.user.next(result.user);
           } else {
             // console.log(result);
@@ -25,11 +27,13 @@ export class AuthenticationService {
         },
         err => {
           // console.log(err.status);
-          // const response = JSON.parse(err._body);
           if (err.status !== 0) {
             const response = JSON.parse(err._body);
+            this.connected.next(true);
+            // console.log(response);
             // this.alertService.error(response.message);
           } else {
+            this.connected.next(false);
             // console.log('No hay conexión con el servicio API RESTFull');
           }
         });
@@ -39,6 +43,9 @@ export class AuthenticationService {
     }
     whoAmI(): ReplaySubject<User> {
       return this.user;
+    }
+    isConnected(): ReplaySubject<boolean> {
+      return this.connected;
     }
 
     login(username: string, password: string) {

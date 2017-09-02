@@ -67,6 +67,19 @@ export const routes: Routes = [
         loadChildren: './_modules/stories/stories.module#StoriesModule',
       }
     ]
+  },
+  {
+    path: 'pages',
+    component: SimpleLayoutComponent,
+    data: {
+      title: ''
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './_modules/pages/pages.module#PagesModule',
+      }
+    ]
   }
 ];
 
