@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { CreateStoryComponent } from './create-story.component';
+import { NewStoryComponent } from './new-story.component';
 import { UserTimelineComponent } from './user-timeline.component';
 import { StoryComponent } from './story/story.component';
 
@@ -16,7 +16,7 @@ import { StoriesRoutingModule } from './stories-routing.module';
     StoriesRoutingModule
   ],
   declarations: [
-    CreateStoryComponent,
+    NewStoryComponent,
     UserTimelineComponent,
     StoryComponent
   ],

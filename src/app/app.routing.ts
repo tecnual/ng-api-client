@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CreateStoryComponent } from './_modules/stories/create-story/create-story.component';
+import { NewStoryComponent } from './_modules/stories/new-story.component';
 import { RegisterComponent } from './_modules/user/register.component';
 import { SettingsComponent } from './_modules/user/settings.component';
 import { UserTimelineComponent } from './_modules/stories/user-timeline.component';

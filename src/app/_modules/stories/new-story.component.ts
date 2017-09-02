@@ -11,7 +11,7 @@ import { User } from '../../_models/';
   selector: 'app-new-story',
   templateUrl: '../../layout/default/new-story.component.html',
 })
-export class CreateStoryComponent implements OnInit {
+export class NewStoryComponent implements OnInit {
     model: any = {};
     loading = false;
     title = 'Tecnual - New Story';
