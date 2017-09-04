@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login.component';
 import { RegisterComponent } from './register.component';
 import { SettingsComponent } from './settings.component';
+import { UsersListComponent } from './users-list.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,13 @@ const routes: Routes = [
         component: SettingsComponent,
         data: {
           title: 'Settings Page'
+        }
+      },
+      {
+        path: 'list',
+        component: UsersListComponent,
+        data: {
+          title: 'Users list'
         }
       }
     ]

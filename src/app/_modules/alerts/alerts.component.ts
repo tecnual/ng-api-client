@@ -11,7 +11,9 @@ import { AlertsService } from './_services/index';
 export class AlertsComponent implements OnInit {
     alerts: AlertModel[] = [];
 
-    constructor(private alertsService: AlertsService) { }
+    constructor(
+      private alertsService: AlertsService
+    ) { }
 
     ngOnInit() {
         this.alertsService.getAlert().subscribe((alert: AlertModel) => {
