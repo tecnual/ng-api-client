@@ -4,4 +4,9 @@ export class User {
     displayName: string;
     password: string;
     email: string;
+    counter: {
+      beats: number,
+      followers: number,
+      friends: number
+    };
 }

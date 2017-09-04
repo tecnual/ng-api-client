@@ -26,18 +26,23 @@ export class UserTimelineComponent implements OnInit {
     this.authenticationService.whoAmI()
       .subscribe(r => {
         this.user = r;
-        this.storiesService.getUserStories(this.user.userName)
-        .subscribe(data => {
-          // console.log('data');
-          // console.log(data);
-          this.stories = data.stories;
-          // this.user = data.user;
-        },
-        error => {
-          // console.log('error');
-          console.error(error);
-        });
+
+//        this.storiesService.getUserStories(this.user.userName)
+//        .subscribe(data => {
+//          // console.log('data');
+//          // console.log(data);
+//          this.stories = data.stories;
+//          // this.user = data.user;
+//        },
+//        error => {
+//          // console.log('error');
+//          console.error(error);
+//        });
       });
+    this.authenticationService.getStories()
+    .subscribe(r => {
+      this.stories = r;
+    });
   }
   ngOnInit() {
   }

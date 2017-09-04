@@ -5,21 +5,39 @@ import { BehaviorSubject, ReplaySubject, Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 import { User } from '../_models/index';
+import { Story } from '../_modules/stories/_models/story.model';
+import { StoriesService } from '../_modules/stories/_services/stories.service';
 
 @Injectable()
 export class AuthenticationService {
     private logged = new ReplaySubject<boolean>(1); // Resend 1 old value to new subscribers
     private connected = new ReplaySubject<boolean>(1); // Resend 1 old value to new subscribers
     private user = new ReplaySubject<User>(null);
+    private stories = new ReplaySubject<Story[]>(null);
 
-    constructor(private http: Http) {
+    constructor(
+      private http: Http,
+      private storiesService: StoriesService
+    ) {
+
       this.getSettings()
         .subscribe(result => {
           if (result) {
-            // console.log('result' + JSON.stringify(result.user));
+            // console.log('result' + JSON.stringify(result));
             this.logged.next(true);
             this.connected.next(true);
             this.user.next(result.user);
+            this.storiesService.getUserStories(result.user.userName)
+            .subscribe(data => {
+              this.stories.next(data.stories);
+//            console.log('data');
+//            console.log(this.stories);
+              // this.user = data.user;
+            },
+            error => {
+              // console.log('error');
+              console.error(error);
+            });
           } else {
             // console.log(result);
             console.error('Incorrecto: ');
@@ -43,6 +61,9 @@ export class AuthenticationService {
     }
     whoAmI(): ReplaySubject<User> {
       return this.user;
+    }
+    getStories(): ReplaySubject<Story[]> {
+      return this.stories;
     }
     isConnected(): ReplaySubject<boolean> {
       return this.connected;

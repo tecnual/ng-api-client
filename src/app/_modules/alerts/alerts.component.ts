@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AlertModel, AlertTypeModel } from '../_models/index';
-import { AlertsService } from '../_services/index';
+import { AlertModel, AlertTypeModel } from './_models/index';
+import { AlertsService } from './_services/index';
 
 @Component({
     selector: 'alert',
-    templateUrl: '../_views/alerts.component.html'
+    templateUrl: '../../layout/default/alerts.component.html'
 })
 
 export class AlertsComponent implements OnInit {
@@ -20,7 +20,6 @@ export class AlertsComponent implements OnInit {
                 this.alerts = [];
                 return;
             }
-
             // add alert to array
             this.alerts.push(alert);
         });
