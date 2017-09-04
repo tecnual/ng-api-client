@@ -2,8 +2,10 @@
   {{user.userName}}
 </p>
 <app-new-story></app-new-story>
+
+
 <ul class="list-group">
   <li class="list-group-item" *ngFor="let story of stories">
-    <app-story [story]="story"></app-story>
+    <app-story [story]="story" [index]="this.stories.indexOf(story)"></app-story>
   </li>
 </ul>
