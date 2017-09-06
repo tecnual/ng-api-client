@@ -43,6 +43,19 @@ export const routes: Routes = [
     ]
   },
   {
+    path: ':user',
+    component: FullLayoutComponent,
+    data: {
+      title: 'User'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './_modules/user/user.module#UserModule',
+      }
+    ]
+  },
+  {
     path: 'account',
     component: FullLayoutComponent,
     data: {
@@ -78,6 +91,19 @@ export const routes: Routes = [
       {
         path: '',
         loadChildren: './_modules/pages/pages.module#PagesModule',
+      }
+    ]
+  },
+  {
+    path: 'search',
+    component: FullLayoutComponent,
+    data: {
+      title: ''
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './_modules/search/search.module#SearchModule',
       }
     ]
   }

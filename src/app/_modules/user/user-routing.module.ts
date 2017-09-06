@@ -6,9 +6,24 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login.component';
 import { RegisterComponent } from './register.component';
 import { SettingsComponent } from './settings.component';
-import { UsersListComponent } from './users-list.component';
+import { FollowersComponent } from './followers.component';
+import { FriendsComponent } from './friends.component';
 
 const routes: Routes = [
+  {
+    path: 'followers',
+    component: FollowersComponent,
+    data: {
+      title: 'Followers'
+    }
+  },
+  {
+    path: 'friends',
+    component: FriendsComponent,
+    data: {
+      title: 'Friends'
+    }
+  },
   {
     path: '',
     data: {
@@ -34,13 +49,6 @@ const routes: Routes = [
         component: SettingsComponent,
         data: {
           title: 'Settings Page'
-        }
-      },
-      {
-        path: 'list',
-        component: UsersListComponent,
-        data: {
-          title: 'Users list'
         }
       }
     ]
