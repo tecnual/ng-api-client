@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 import { StoriesService } from './_services/';
@@ -18,6 +18,7 @@ export class NewStoryComponent implements OnInit {
     title = 'Tecnual - New Story';
     user = new User;
     stories = new Array<Story>();
+    refresh: number;
 
   constructor(
     private router: Router,
@@ -25,7 +26,8 @@ export class NewStoryComponent implements OnInit {
     private userService: UserService,
     private titleService: Title,
     private authenticationService: AuthenticationService,
-    private alertsService: AlertsService
+    private alertsService: AlertsService,
+    private route: ActivatedRoute
   ) {
     this.authenticationService.whoAmI()
       .subscribe(r => {
@@ -39,26 +41,24 @@ export class NewStoryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.refresh = params.refresh || 0;
+    });
   }
   newStory() {
     this.loading = true;
 
-//    this.model.user.id = this.user._id;
     this.model.user = this.user;
-    // console.log('USER :');
-    // console.log(this.user);
-    // console.log('MODEL :');
-    // console.log(this.model);
 
     this.storiesService.newStory(this.model)
       .subscribe(
       data => {
         // set success message and pass true paramater to persist the message.
-        // console.log(data);
-
+        this.stories.unshift(data.story);
         this.alertsService.success(data.message, true);
-        this.model.user.counter.beats++;
-        this.stories.unshift(this.model);
+        this.user.counter.beats++;
+        this.model.story = '';
+        this.model.more = '';
         this.loading = false;
       },
       error => {
