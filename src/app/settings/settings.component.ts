@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Subject, ReplaySubject, Observable } from 'rxjs/Rx';
-
 
 import { AuthenticationService, UserService } from '../_services/index';
 import { AlertsService } from '../_modules/alerts/_services';
@@ -17,6 +16,7 @@ export class SettingsComponent implements OnInit {
   loading = false;
   title = 'Tecnual - Settings';
   user: User;
+
   constructor(
     private newUser: User,
     private router: Router,

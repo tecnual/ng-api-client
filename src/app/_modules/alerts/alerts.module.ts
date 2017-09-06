@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AlertsComponent } from './_components/';
+import { AlertsComponent } from './alerts.component';
 import { AlertsService } from './_services';
 import { AlertModel, AlertTypeModel } from './_models';
 

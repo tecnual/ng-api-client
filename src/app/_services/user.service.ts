@@ -7,14 +7,6 @@ import { User } from '../_models/index';
 export class UserService {
     constructor(private http: Http) { }
 
-    getAll() {
-        return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
-    }
-
-    getById(id: number) {
-        return this.http.get('/auth/users/' + id, this.jwt()).map((response: Response) => response.json());
-    }
-
     getSettings() {
         return this.http.get('http://192.168.1.150:3000/account/settings/', this.jwt()).map((response: Response) => response.json());
     }
@@ -29,14 +21,40 @@ export class UserService {
           user,
           this.jwt()).map((response: Response) => response.json());
     }
-    update(user: User) {
-        return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
+
+    followUser(userId: string) {
+      // console.log(`Follow: ${userId}`);
+
+      return this.http.post(
+        'http://192.168.1.150:3000/friendships/follow',
+        { userId },
+        this.jwt()).map((response: Response) => response.json()
+      );
     }
 
-    delete(id: number) {
-        return this.http.delete('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+    unFollowUser(userId: string) {
+      // console.log(`unFollow: ${userId}`);
+
+      return this.http.post(
+        'http://192.168.1.150:3000/friendships/unfollow',
+        { userId },
+        this.jwt()).map((response: Response) => response.json()
+      );
     }
 
+    getFollowersList(userName: string) {
+      return this.http.get(
+        'http://192.168.1.150:3000/' + userName + '/followers',
+        this.jwt()).map((response: Response) => response.json()
+      );
+    }
+
+    getFriendsList(userName: string) {
+      return this.http.get(
+        'http://192.168.1.150:3000/' + userName + '/friends',
+        this.jwt()).map((response: Response) => response.json()
+      );
+    }
     // private helper methods
 
     private jwt() {

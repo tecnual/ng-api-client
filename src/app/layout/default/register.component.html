@@ -1,0 +1,59 @@
+<div class="app flex-row align-items-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card mx-4">
+          <div class="card-body p-4">
+            <h1>Register</h1>
+            <p class="text-muted">Create your account</p>
+            <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+              <div class="input-group mb-3" [ngClass]="{ 'has-error': f.submitted && !userName.valid }">
+                <span class="input-group-addon">@</span>
+                <input type="text" class="form-control" placeholder="User Name or Alias" name="userName" [(ngModel)]="model.userName" #userName="ngModel" required />
+                  <div *ngIf="f.submitted && !userName.valid" class="help-block">User Name or alias is required</div>
+              </div>
+              <div class="input-group mb-3" [ngClass]="{ 'has-error': f.submitted && !displayName.valid }">
+                <span class="input-group-addon"><i class="icon-user"></i></span>
+                <input type="text" class="form-control" placeholder="Name" name="displayName" [(ngModel)]="model.displayName" #displayName="ngModel" required />
+                <div *ngIf="f.submitted && !displayName.valid" class="help-block">Name is required</div>
+              </div>
+
+            <div class="input-group mb-3" [ngClass]="{ 'has-error': f.submitted && email.valid }">
+              <span class="input-group-addon"><i class="icon-envelope"></i></span>
+              <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="model.email" #email="ngModel" required />
+              <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+            </div>
+
+            <div class="input-group mb-3" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+              <span class="input-group-addon"><i class="icon-lock"></i></span>
+              <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+              <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+            </div>
+
+            <div class="input-group mb-4" [ngClass]="{ 'has-error': f.submitted && !repassword.valid }">
+              <span class="input-group-addon"><i class="icon-lock"></i></span>
+              <input type="password" class="form-control" placeholder="Repeat password" name="repassword" [(ngModel)]="model.repassword" #repassword="ngModel" />
+              <div *ngIf="f.submitted && !repassword.valid || password.value !== repassword.value" class="help-block">Password must match</div>
+            </div>
+            <div class="row">
+                <button [disabled]="loading" class="btn btn-block btn-primary px-4">Create Account</button>
+                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                />
+            </div>
+          </form>
+          </div>
+          <div class="card-footer p-4">
+            <div class="row">
+              <div class="col-6">
+                <button class="btn btn-block btn-facebook" type="button"><span>facebook</span></button>
+              </div>
+              <div class="col-6">
+                <button class="btn btn-block btn-twitter" type="button"><span>twitter</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   moduleId: module.id,
-  templateUrl: 'home.component.html'
+  templateUrl: '../layout/default/home.component.html',
 })
 
 export class HomeComponent implements OnInit {
