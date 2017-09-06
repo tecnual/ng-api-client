@@ -9,4 +9,6 @@ export class User {
       followers: number,
       friends: number
     };
+    followers: string[];
+    friends: string[];
 }

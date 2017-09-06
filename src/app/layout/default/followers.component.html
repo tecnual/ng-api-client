@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-sm-4" *ngFor="let follower of followers">
+    <div class="card">
+      <div class="card-block">
+        <h3 class="card-title mb-1">{{ follower.displayName }}</h3>
+        <p class="card-subtitle mb-2 text-muted">@{{ follower.userName }}</p>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <button class="btn btn-primary">
+         <span (click)="follow(follower._id)" *ngIf="!userLogged.friends?.includes(follower._id)">Follow</span>
+         <span (click)="unFollow(follower._id)" *ngIf="userLogged.friends?.includes(follower._id)"> Unfollow </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

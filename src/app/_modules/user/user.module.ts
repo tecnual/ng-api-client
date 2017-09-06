@@ -6,7 +6,8 @@ import { LoginComponent } from './login.component';
 import { RegisterComponent } from './register.component';
 import { SettingsComponent } from './settings.component';
 import { UserRoutingModule } from './user-routing.module';
-import { UsersListComponent } from './users-list.component';
+import { FollowersComponent } from './followers.component';
+import { FriendsComponent } from './friends.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { UsersListComponent } from './users-list.component';
     LoginComponent,
     RegisterComponent,
     SettingsComponent,
-    UsersListComponent,
+    FollowersComponent,
+    FriendsComponent
   ]
 })
 export class UserModule { }
