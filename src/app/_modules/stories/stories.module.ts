@@ -9,6 +9,7 @@ import { StoryComponent } from './story.component';
 
 import { StoriesService } from './_services/stories.service';
 import { StoriesRoutingModule } from './stories-routing.module';
+import { HomeTimelineComponent } from './home-timeline.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { StoriesRoutingModule } from './stories-routing.module';
   declarations: [
     NewStoryComponent,
     UserTimelineComponent,
-    StoryComponent
+    StoryComponent,
+    HomeTimelineComponent
   ],
   providers: [
     StoriesService

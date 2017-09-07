@@ -23,6 +23,7 @@
 
 <div class="card">
   <div class="card-header">
+    <span><strong>{{ story.user.displayName }}</strong> <cite>@{{ story.user.userName }}</cite></span>
     <span class="pull-right"><i data-toggle="modal" [attr.data-target]="'#m-' + story._id" class="icon-trash"></i></span>
   </div>
   <div class="card-block">

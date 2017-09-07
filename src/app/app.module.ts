@@ -8,8 +8,6 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AppRoutingModule } from './app.routing';
 import { AuthenticationService, UserService } from './_services/index';
 import { AppComponent } from './app.component';
-import { HomeModule } from './home/home.module';
-import { HomeComponent } from './home/index';
 import { AuthGuard } from './_guards/index';
 import { User } from './_models/index';
 import { AlertsModule } from './_modules/alerts/alerts.module';
@@ -28,7 +26,6 @@ import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     FullLayoutComponent,
     SimpleLayoutComponent,
     BreadcrumbsComponent,
@@ -46,7 +43,6 @@ import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
     AppRoutingModule,
     AlertsModule,
     StoriesModule,
-    HomeModule,
     FooterModule,
     BsDropdownModule.forRoot()
   ],

@@ -12,7 +12,7 @@ import { SimpleLayoutComponent } from './_modules/layouts/simple-layout.componen
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -24,8 +24,8 @@ export const routes: Routes = [
     },
     children: [
       {
-        path: 'dashboard',
-        loadChildren: './_modules/dashboard/dashboard.module#DashboardModule'
+        path: 'home',
+        loadChildren: './_modules/stories/stories.module#StoriesModule'
       }
     ]
   },
