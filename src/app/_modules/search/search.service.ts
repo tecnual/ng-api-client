@@ -10,7 +10,9 @@ export class SearchService {
   getUsersList() {
     return this.http.get('http://192.168.1.150:3000/search/users/', this.jwt()).map((response: Response) => response.json());
   }
-
+  search(search: string) {
+    return this.http.get('http://192.168.1.150:3000/search/' + search, this.jwt()).map((response: Response) => response.json());
+  }
   private jwt() {
       // create authorization header with jwt token
       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -19,5 +21,4 @@ export class SearchService {
           return new RequestOptions({ headers: headers });
       }
   }
-
 }

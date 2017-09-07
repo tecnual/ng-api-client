@@ -22,6 +22,7 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
+import { SearchBoxComponent } from './_modules/search/search-box.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
     AsideToggleDirective,
     SIDEBAR_TOGGLE_DIRECTIVES,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    SearchBoxComponent
   ],
   imports: [
     BrowserModule,

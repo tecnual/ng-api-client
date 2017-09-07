@@ -30,21 +30,21 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'user',
-    component: SimpleLayoutComponent,
+    path: 'search',
+    component: FullLayoutComponent,
     data: {
-      title: 'User'
+      title: ''
     },
     children: [
       {
         path: '',
-        loadChildren: './_modules/user/user.module#UserModule',
+        loadChildren: './_modules/search/search.module#SearchModule',
       }
     ]
   },
   {
-    path: ':user',
-    component: FullLayoutComponent,
+    path: 'user',
+    component: SimpleLayoutComponent,
     data: {
       title: 'User'
     },
@@ -95,15 +95,15 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'search',
+    path: ':user',
     component: FullLayoutComponent,
     data: {
-      title: ''
+      title: 'User'
     },
     children: [
       {
         path: '',
-        loadChildren: './_modules/search/search.module#SearchModule',
+        loadChildren: './_modules/user/user.module#UserModule',
       }
     ]
   }
