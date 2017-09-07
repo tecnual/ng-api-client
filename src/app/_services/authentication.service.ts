@@ -69,8 +69,8 @@ export class AuthenticationService {
       return this.connected;
     }
 
-    login(username: string, password: string) {
-        return this.http.put('http://192.168.1.150:3000/auth/login', { email: username, password: password })
+    login(userName: string, password: string) {
+        return this.http.put('http://192.168.1.150:3000/auth/login', { userName: userName, password: password })
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 const user = response.json();
