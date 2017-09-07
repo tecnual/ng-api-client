@@ -18,6 +18,15 @@ export class StoriesService {
           response: Response
         ) => response.json());
     }
+    getHomeTimeline() {
+      return this.http.get(
+        'http://192.168.1.150:3000/stories/home_timeline/',
+        this.jwt())
+        .map((
+          response: Response
+        ) => response.json());
+    }
+
     destroyStory(id: string) {
       return this.http.put(
         'http://192.168.1.150:3000/stories/destroy/' + id,
