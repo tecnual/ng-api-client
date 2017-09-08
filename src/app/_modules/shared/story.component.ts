@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Story } from './_models/';
-import { StoriesService } from './_services/';
+import { Story } from '../stories/_models/';
+import { StoriesService } from '../stories/_services/';
 import { AlertsService } from '../../_modules/alerts/_services';
 import { AuthenticationService, UserService } from '../../_services/';
 import { User } from '../../_models/';
