@@ -7,7 +7,6 @@ import { Story } from './_models/';
 import { User } from '../../_models/';
 import { AuthenticationService } from '../../_services/index';
 
-
 @Component({
   moduleId: module.id,
   templateUrl: '../../layout/default/user-timeline.component.html',

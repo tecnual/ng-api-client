@@ -6,12 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppRoutingModule } from './app.routing';
+import { SharedModule } from './_modules/shared/shared.module';
 import { AuthenticationService, UserService } from './_services/index';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './_guards/index';
 import { User } from './_models/index';
 import { AlertsModule } from './_modules/alerts/alerts.module';
 import { StoriesModule } from './_modules/stories/stories.module';
+import { SearchModule } from './_modules/search/search.module';
 import { UserModule } from './_modules/user/user.module';
 import { FooterModule } from './_modules/footer/footer.module';
 import { NavbarComponent } from './_modules/navbar/navbar.component';
@@ -46,6 +48,7 @@ import { SearchBoxComponent } from './_modules/search/search-box.component';
     AlertsModule,
     StoriesModule,
     FooterModule,
+    SearchModule,
     BsDropdownModule.forRoot()
   ],
   providers: [
