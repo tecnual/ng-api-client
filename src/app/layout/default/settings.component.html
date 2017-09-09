@@ -5,7 +5,7 @@
     <form name="form-horizontal" (ngSubmit)="f.form.valid && saveSettings()" #f="ngForm" novalidate>
       <label class="sr-only" for="displayName">Name</label>
       <div class="input-group" [ngClass]="{ 'has-error': f.submitted && !displayName.valid }">
-        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        <span class="input-group-addon"><i class="icon-user"></i></span>
         <span class="input-group-addon">Name</span>
         <input type="text" class="form-control" placeholder="Name" name="displayName" [(ngModel)]="user.displayName" #displayName="ngModel" required />
         <div *ngIf="f.submitted && !displayName.valid" class="help-block">Name is required</div>
@@ -13,10 +13,17 @@
       <br>
       <label class="sr-only" for="email">Email</label>
       <div class="input-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-        <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+        <div class="input-group-addon"><i class="icon-envelope"></i></div>
         <div class="input-group-addon">Email</div>
         <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="user.email" #email="ngModel" required />
         <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+      </div>
+      <br>
+      <label class="sr-only" for="info">Info</label>
+      <div class="input-group" [ngClass]="{ 'has-error': f.submitted && !info.valid }">
+        <div class="input-group-addon"><i class="icon-info"></i></div>
+        <div class="input-group-addon">Info</div>
+        <textarea type="text" class="form-control" placeholder="About me..." name="info" [(ngModel)]="user.info" #info="ngModel"></textarea>
       </div>
       <br>
       <div class="form-group">

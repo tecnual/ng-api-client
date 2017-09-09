@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { RequestOptions, Http, Headers } from '@angular/http';
+import {Observable} from 'rxjs/Observable';
 
 import { StoriesService } from './_services/';
 import { AlertsService } from '../../_modules/alerts/_services';
@@ -19,6 +21,7 @@ export class NewStoryComponent implements OnInit {
     user = new User;
     stories = new Array<Story>();
     refresh: number;
+    moreIcon = 'plus';
 
   constructor(
     private router: Router,
@@ -27,7 +30,8 @@ export class NewStoryComponent implements OnInit {
     private titleService: Title,
     private authenticationService: AuthenticationService,
     private alertsService: AlertsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: Http
   ) {
     this.authenticationService.whoAmI()
       .subscribe(r => {
@@ -41,6 +45,7 @@ export class NewStoryComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.route.params.subscribe(params => {
       this.refresh = params.refresh || 0;
     });
@@ -76,4 +81,30 @@ export class NewStoryComponent implements OnInit {
         this.loading = false;
       });
   }
+
+  toggleMoreIcon() {
+    return this.moreIcon === 'plus' ? this.moreIcon = 'minus' : this.moreIcon = 'plus';
+  }
+
+  fileChange(event) {
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+        const file: File = fileList[0];
+        const formData: FormData = new FormData();
+        formData.append('uploadFile', file, file.name);
+        const headers = new Headers();
+        /** No need to include Content-Type in Angular 4 */
+        // headers.append('Content-Type', 'multipart/form-data');
+        // headers.append('Accept', 'application/json');
+        const options = new RequestOptions({ headers: headers });
+        this.http.post(`http://localhost:3000/upload`, formData, options)
+            .map(res => res.json())
+            .catch(error => Observable.throw(error))
+            .subscribe(
+                data => console.log('success'),
+                error => console.log(error)
+            );
+    }
+}
+
 }
