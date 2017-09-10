@@ -1,23 +1,33 @@
 <section>
-<div class="jumbotron p-2">
-  <div class="container p-0">
-    <form name="form" (ngSubmit)="f.form.valid && newStory()" #f="ngForm" novalidate>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !story.valid }">
-        <label class="sr-only" for="story">¿Qué estás pensando?</label>
-        <textarea class="form-control" rows="3" placeholder="¿Qué estás pensando?" name="story" [(ngModel)]="model.story" #story="ngModel" required></textarea>
-        <div *ngIf="f.submitted && !story.valid" class="help-block">Story required</div>
-      </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !more.valid }">
-        <label class="sr-only" for="more">Email</label>
-        <input type="text" class="form-control" placeholder="More..." name="more" [(ngModel)]="model.more" #more="ngModel"/>
-      </div>
-      <div class="form-group mb-1">
-        <button [disabled]="loading" class="btn btn-primary">Publish</button>
-        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-        />
-        <button [routerLink]="['/']" class="btn btn-outline-info">Cancel</button>
-      </div>
-    </form>
+  <div class="jumbotron p-2">
+    <div class="container p-0">
+      <form name="form" (ngSubmit)="f.form.valid && newStory()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !story.valid }">
+          <label class="sr-only" for="story">¿Qué estás pensando?</label>
+          <textarea id="story" maxlength="150" rows="3" class="form-control" placeholder="¿Qué estás pensando?" name="story" [(ngModel)]="model.story" #story="ngModel" required></textarea>
+          <div *ngIf="f.submitted && !story.valid" class="help-block">Story required</div>
+        </div>
+        <ul class="nav nav-fill">
+          <li class="nav-item">
+            <a class="nav-link active pull-left" data-toggle="collapse" href="#more" (click)="toggleMoreIcon()"><i class="icon-{{ moreIcon }}"></i></a>
+          </li>
+          <li class="nav-item">
+            <label class="nav-link"><input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".jpg, .png, .gif" hidden>
+          <i class="icon-picture"></i></label>
+          </li>
+          <li class="nav-item"><a class="nav-link pull-right">{{ 150 - model.story?.length }}</a></li>
+        </ul>
+        <div class="form-group collapse" id="more" [ngClass]="{ 'has-error': f.submitted && !more.valid }">
+          <label class="sr-only" for="more">Email</label>
+          <textarea type="text" rows="5" class="form-control" placeholder="More..." name="more" [(ngModel)]="model.more" #more="ngModel"></textarea>
+        </div>
+        <div class="form-group mb-1">
+          <button [disabled]="loading" class="btn btn-primary">Publish</button>
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+          />
+          <button [routerLink]="['/']" class="btn btn-outline-info">Cancel</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 </section>
