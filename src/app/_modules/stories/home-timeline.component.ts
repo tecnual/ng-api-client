@@ -27,19 +27,20 @@ export class HomeTimelineComponent implements OnInit {
       .subscribe(r => {
         this.user = r;
       });
+      this.storiesService.getHomeTimeline()
+      .subscribe(data => {
+        this.stories = data.stories;
+  //            console.log('data');
+  //            console.log(this.stories);
+        // this.user = data.user;
+      },
+      error => {
+        console.log('error');
+        console.error(error);
+      });
   }
   ngOnInit() {
-    this.storiesService.getHomeTimeline()
-    .subscribe(data => {
-      this.stories = data.stories;
-//            console.log('data');
-//            console.log(this.stories);
-      // this.user = data.user;
-    },
-    error => {
-      console.log('error');
-      console.error(error);
-    });
+
 
   }
 

@@ -5,14 +5,19 @@ import { FormsModule } from '@angular/forms';
 
 import { StoryComponent } from './story.component';
 
+import { UploadService } from './upload.service';
+
 @NgModule({
   imports: [
-    MomentModule
+    MomentModule,
   ],
   exports: [
     StoryComponent,
     CommonModule,
-    FormsModule
+    FormsModule,
+  ],
+  providers: [
+    UploadService
   ],
   declarations: [
     StoryComponent

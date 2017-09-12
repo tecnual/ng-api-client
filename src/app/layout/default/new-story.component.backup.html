@@ -1,0 +1,67 @@
+<section>
+  <div class="jumbotron p-2">
+    <div class="container p-0">
+      <form name="form" (ngSubmit)="f.form.valid && newStory()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !story.valid }">
+          <label class="sr-only" for="story">¿Qué estás pensando?</label>
+          <textarea id="story" maxlength="150" rows="3" class="form-control" placeholder="¿Qué estás pensando?" name="story" [(ngModel)]="model.story" #story="ngModel" required></textarea>
+          <div *ngIf="f.submitted && !story.valid" class="help-block">Story required</div>
+        </div>
+        <ul class="nav d-flex justify-content-start">
+          <li class="nav-item p-2">
+            <span data-toggle="collapse" data-target="#more" (click)="toggleMoreIcon()"><i class="icon-{{ moreIcon }}"></i></span>
+          </li>
+          <li class="nav-item p-2">
+            <label><input type="file" ng2FileSelect [uploader]="uploader" multiple hidden /><i class="icon-picture"></i></label>
+          </li>
+          <li class="nav-item ml-auto p-2"><span>{{ 150 - model.story?.length }}</span></li>
+        </ul>
+        <div class="form-group collapse" id="more" [ngClass]="{ 'has-error': f.submitted && !more.valid }">
+          <label class="sr-only" for="more">More</label>
+          <textarea type="text" rows="5" class="form-control" placeholder="More..." name="more" [(ngModel)]="model.more" #more="ngModel"></textarea>
+        </div>
+
+        <div *ngIf="uploader.queue.length > 0" class="container ml-0 mr-0 pl-0 pr-0">
+
+          <ul class="list-group row ml-0 mr-0 mb-2 pl-0 pr-0">
+            <li class="list-group-item d-flex align-items-center justify-content-start m-0 p-0" *ngFor="let item of uploader.queue">
+              <span class="p-1" role="tooltip" data-toggle="tooltip" data-placement="bottom" data-html="true" title="{{ item?.file?.name }}">
+              <img [src]="filePreviewPath[uploader.queue.indexOf(item)]" *ngIf="filePreviewPath[uploader.queue.indexOf(item)]" width="30"/>
+            </span>
+              <span class="p-1">
+              {{ item?.file?.size / 1000 | number:'.1-2' }} KB
+            </span>
+              <span (click)="filePreviewPath.splice(uploader.queue.indexOf(item), 1); item.remove();" class="fa fa-remove ml-auto p-1"></span>
+              <!--
+                <button type="button" class="btn btn-success btn-xs"
+                        (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                    <span class="icon-cloud-upload"></span> Upload
+                </button>
+                <button type="button" class="btn btn-warning btn-xs"
+                        (click)="item.cancel()" [disabled]="!item.isUploading">
+                    <span class="icon-ban"></span> Cancel
+                </button>
+                -->
+            </li>
+          </ul>
+        </div>
+          <div>
+            <div>
+              <div *ngIf="uploader.progress" class="progress m-2" style="">
+                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" [disabled]="!f.form.valid" (click)="newStory()">
+            <span class="icon-cloud-upload"></span> Publish
+        </button>
+            <button type="button" class="btn btn-warning btn-sm" (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+            <span class="icon-ban"></span> Cancel
+        </button>
+        <button *ngIf="uploader.queue.length > 0" type="button" class="btn btn-danger btn-sm" (click)="clearQueue()" [disabled]="!uploader.queue.length">
+            <span class="icon-trash"></span> Remove all
+        </button>
+          </div>
+      </form>
+    </div>
+  </div>
+</section>
