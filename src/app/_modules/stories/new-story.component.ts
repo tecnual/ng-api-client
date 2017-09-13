@@ -79,23 +79,27 @@ export class NewStoryComponent implements OnInit {
       this.filePreviewPath.push(this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(fileItem))));
     });
   }
-  submitForm() {
+  submitForm(form: any) {
     // console.log('this.model', this.model);
     // console.log('form.value', form.value);
 
     // const fileInput: HTMLInputElement = this.screenshotInput.nativeElement;
     // console.log('fileInput.files', fileInput.files);
 
+    // TODO: Hay que diferenciar entre fotos, videos y demás ficheros.
+    (this.filesList.length > 0) ? this.uploadFiles() : this.newStory(null);
+    form._submitted = false;
+  }
+  uploadFiles() {
     this.queueProgress = 0;
     this.isUploading = true;
     let startTime = Date.now();
-
     this.uploadService.uploadFiles(this.model, this.filesList).subscribe(
       (event: HttpEvent<any>) => {
         switch (event.type) {
           case HttpEventType.Sent:
             startTime = Date.now();
-            console.trace('Request sent!');
+            // console.trace('Request sent!');
             break;
           case HttpEventType.DownloadProgress:
           case HttpEventType.UploadProgress:
@@ -114,15 +118,14 @@ export class NewStoryComponent implements OnInit {
           case HttpEventType.Response:
             this.queueProgress = 100;
             this.isUploading = false;
-            console.log('Done! ResponseBody:', event.body);
+            // console.trace('Done! ResponseBody:', event.body);
             this.newStory(event.body.filesSaved);
             break;
         }
       },
       (error: HttpErrorResponse) => {
         this.isUploading = false;
-
-        console.log(error.error);
+        console.error(error);
         error = JSON.parse(error.error);
         this.toastr.error(error.message, 'Error!', {
           closeButton: true,
@@ -131,15 +134,15 @@ export class NewStoryComponent implements OnInit {
     );
   }
   newStory(files: File[]) {
-    console.log(files);
+    // console.log(files);
     this.model.user = this.user;
     this.model.files = files;
-    console.log(this.model);
+    // console.log(this.model);
     this.storiesService.newStory(this.model)
       .subscribe(
       data => {
         // set success message and pass true paramater to persist the message.
-        console.log(data.story);
+        // console.log(data.story);
         this.stories.unshift(data.story);
         this.toastr.success(data.message, 'Done!', {
           closeButton: true,
@@ -169,34 +172,4 @@ export class NewStoryComponent implements OnInit {
   toggleMoreIcon() {
     return this.moreIcon === 'plus' ? this.moreIcon = 'minus' : this.moreIcon = 'plus';
   }
-//  clearQueue() {
-//    this.filePreviewPath = [];
-//    this.uploader.clearQueue();
-//  }
-//  fileChange(event) {
-//
-//    console.log('Upload');
-//    console.log(this.uploader.queue);
-//    const fileList: FileList = event.target.files;
-//    if (fileList.length > 0) {
-//        const file: File = fileList[0];
-//        const formData: FormData = new FormData();
-//        formData.append('body', '{ story: this.model }');
-//        formData.append('uploadFile', file, file.name);
-//        const headers = new Headers();
-//        /** No need to include Content-Type in Angular 4 */
-//        // headers.append('Content-Type', 'multipart/form-data');
-//        // headers.append('Accept', 'application/json');
-//        const options = new RequestOptions({
-//          headers: headers
-//         });
-//        this.http.post(`http://localhost:3000/upload`, formData, options)
-//            .map(res => res.json())
-//            .catch(error => Observable.throw(error))
-//            .subscribe(
-//                data => console.log('success'),
-//                error => console.log(error)
-//            );
-//    }
-//  }
 }

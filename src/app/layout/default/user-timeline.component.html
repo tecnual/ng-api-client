@@ -1,6 +1,6 @@
 <app-new-story></app-new-story>
 
-<div class="row">
+<div class="row m-1">
   <div class="col-sm-6" *ngFor="let story of stories">
     <app-story [story]="story" [index]="this.stories.indexOf(story)"></app-story>
   </div>

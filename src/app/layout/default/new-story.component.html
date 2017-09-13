@@ -1,7 +1,7 @@
-<section>
+<section class="m-0 p-0">
   <div class="jumbotron p-2">
     <div class="container p-0">
-      <form name="form" (ngSubmit)="f.form.valid && submitForm()" #f="ngForm" novalidate>
+      <form name="form" (ngSubmit)="f.form.valid && submitForm(f)" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !story.valid }">
           <label class="sr-only" for="story">¿Qué estás pensando?</label>
           <textarea id="story" maxlength="150" rows="3" class="form-control" placeholder="¿Qué estás pensando?" name="story" [(ngModel)]="model.story" #story="ngModel" required></textarea>
