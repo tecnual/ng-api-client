@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 import { NewStoryComponent } from './new-story.component';
 import { UserTimelineComponent } from './user-timeline.component';
@@ -16,7 +17,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     NewStoryComponent,
     UserTimelineComponent,
-    HomeTimelineComponent
+    HomeTimelineComponent,
+    FileSelectDirective
   ],
   providers: [
     StoriesService

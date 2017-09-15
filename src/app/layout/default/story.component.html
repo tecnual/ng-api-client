@@ -20,19 +20,29 @@
     </div>
   </div>
 </div>
-
-<div class="card">
-  <div class="card-header">
-    <span><strong>{{ story.user.displayName }}</strong> <cite>@{{ story.user.userName }}</cite></span>
-    <span class="pull-right"><i data-toggle="modal" [attr.data-target]="'#m-' + story._id" class="icon-trash"></i></span>
+<!-- CARD -->
+<!-- TODO: Poner la fecha en grande debajo del avatar -->
+  <div class="card">
+    <div class="row">
+      <div class="col-2">
+        <img class="avatar avatar-lg img-avatar p-1" src="{{ 'http://192.168.1.150:3000/img/' + story.user.avatar?.filename }}" title="{{ story.user.displayName }}" />
+      </div>
+      <div class="col-10">
+        <div class="card-header">
+          <span><strong>{{ story.user.displayName }}</strong> <cite>@{{ story.user.userName }}</cite></span>
+          <span class="pull-right">
+            <i *ngIf="user._id == story.user._id" data-toggle="modal" [attr.data-target]="'#m-' + story._id" class="icon-trash"></i></span>
+        </div>
+        <div class="card-block">
+          <p class="card-text"> {{ story.story }} </p>
+          <p class="card-text"> {{ story.more }} </p>
+        </div>
+          <app-gallery [images]="story.files" *ngIf="story.files?.length > 0"></app-gallery>
+        <div class="card-footer text-muted">
+          <span class="pull-right" data-toggle="tooltip" data-placement="bottom" title="{{ story.composeDate | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm' }}">
+          <i class="icon-clock"></i> {{ story.createdAt | amLocale:'es'| amTimeAgo}}
+        </span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="card-block">
-    <p class="card-text"> {{ story.story }} </p>
-    <p class="card-text"> {{ story.more }} </p>
-  </div>
-  <div class="card-footer text-muted">
-    <span class="pull-right" data-toggle="tooltip" data-placement="bottom" title="{{ story.composeDate | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm' }}">
-      <i class="icon-clock"></i> {{ story.composeDate | amLocale:'es'| amTimeAgo}}
-    </span>
-  </div>
-</div>

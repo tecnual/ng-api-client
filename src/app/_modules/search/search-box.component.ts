@@ -6,6 +6,7 @@ import {Router, ActivatedRoute} from '@angular/router';
   selector: 'app-search-box',
   templateUrl: '../../layout/default/search-box.component.html'
 })
+
 export class SearchBoxComponent implements OnInit {
   model: any = {};
   constructor(

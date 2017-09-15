@@ -1,6 +1,6 @@
   <header class="app-header navbar">
   <button class="navbar-toggler d-lg-none" type="button" appMobileSidebarToggler>&#9776;</button>
-  <a class="navbar-brand" href="#">&#123;Tecn<span class="purpura">ual:</span>&#125;</a>
+  <a class="navbar-brand" href="#">&#123;Rocker<span class="fucsia">Beats</span>&#125;</a>
   <button class="navbar-toggler d-md-down-none" type="button" appSidebarToggler>&#9776;</button>
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
@@ -24,8 +24,7 @@
 -->
     <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
       <a href class="nav-link dropdown-toggle" dropdownToggle (click)="false">
-        <img src="{{ user.avatar }}" class="img-avatar" alt="admin@bootstrapmaster.com">
-        <span class="">{{ user.displayName }}</span>
+        <img src="{{ 'http://192.168.1.150:3000/img/' + user.avatar?.filename }}" class="img-avatar" alt="{{ user.displayName }}">
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
 
