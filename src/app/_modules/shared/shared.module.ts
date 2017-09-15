@@ -3,17 +3,21 @@ import { CommonModule } from '@angular/common';
 import { MomentModule } from 'angular2-moment';
 import { FormsModule } from '@angular/forms';
 
-import { StoryComponent } from './story.component';
+import { NgxGalleryModule } from 'ngx-gallery';
 
+import { StoryComponent } from './story.component';
+import { GalleryComponent } from './gallery.component';
 import { UploadService } from './upload.service';
 
 @NgModule({
   imports: [
     MomentModule,
-    CommonModule
+    CommonModule,
+    NgxGalleryModule
   ],
   exports: [
     StoryComponent,
+    GalleryComponent,
     CommonModule,
     FormsModule
   ],
@@ -21,7 +25,8 @@ import { UploadService } from './upload.service';
     UploadService
   ],
   declarations: [
-    StoryComponent
+    StoryComponent,
+    GalleryComponent
   ]
 })
 export class SharedModule { }

@@ -37,6 +37,7 @@
           <p class="card-text"> {{ story.story }} </p>
           <p class="card-text"> {{ story.more }} </p>
         </div>
+          <app-gallery [images]="story.files" *ngIf="story.files?.length > 0"></app-gallery>
         <div class="card-footer text-muted">
           <span class="pull-right" data-toggle="tooltip" data-placement="bottom" title="{{ story.composeDate | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm' }}">
           <i class="icon-clock"></i> {{ story.createdAt | amLocale:'es'| amTimeAgo}}
