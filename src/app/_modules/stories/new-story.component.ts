@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { RequestOptions, Http, Headers } from '@angular/http';
+// import { RequestOptions, Http, Headers } from '@angular/http';
 import { NgForm } from '@angular/forms';
-import { UploadService} from '../shared/upload.service';
 import {
   HttpEventType,
   HttpEvent,
@@ -14,6 +13,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import { GlobalConfig, ToastrService } from 'ngx-toastr';
 
+import { UploadService} from '../shared/upload.service';
 import { StoriesService } from './_services/';
 import { AlertsService } from '../../_modules/alerts/_services';
 import { AuthenticationService, UserService } from '../../_services/';
@@ -52,7 +52,6 @@ export class NewStoryComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private alertsService: AlertsService,
     private route: ActivatedRoute,
-    private http: Http,
     private uploadService: UploadService,
     private sanitizer: DomSanitizer,
     public toastr: ToastrService
@@ -94,7 +93,7 @@ export class NewStoryComponent implements OnInit {
     this.queueProgress = 0;
     this.isUploading = true;
     let startTime = Date.now();
-    this.uploadService.uploadFiles(this.model, this.filesList).subscribe(
+    this.uploadService.uploadFiles(this.filesList).subscribe(
       (event: HttpEvent<any>) => {
         switch (event.type) {
           case HttpEventType.Sent:
@@ -130,7 +129,8 @@ export class NewStoryComponent implements OnInit {
         this.toastr.error(error.message, 'Error!', {
           closeButton: true,
           timeOut: 5000
-        });      }
+        });
+      }
     );
   }
   newStory(files: File[]) {

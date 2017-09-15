@@ -27,7 +27,7 @@ $green:                           #4dbd74;
 $teal:                            #20c997 !default;
 $cyan:                            #63c2de;
 $morado:                          #55008c;
-$purpura:                         #b7178c;
+$fucsia:                          #b7178c;
 
 $colors: (
   blue:                           $blue,
@@ -44,11 +44,11 @@ $colors: (
   gray:                           $gray-600,
   gray-dark:                      $gray-800,
   morado:                         $morado,
-  purpura:                        $purpura
+  fucsia:                         $fucsia
 );
 
 $theme-colors: (
-  primary:                        $purpura,
+  primary:                        $fucsia,
   secondary:                      $morado,
   success:                        $green,
   info:                           $cyan,

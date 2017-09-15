@@ -17,18 +17,13 @@ export class UploadService {
 
   constructor(private http: HttpClient) {}
 
-  public uploadFiles(params: String, filesList: Array<any> ): Observable<HttpEvent<any>> {
+  public uploadFiles(filesList: Array<any>): Observable<HttpEvent<any>> {
     if (!filesList || filesList.length === 0) {
       return Observable.throw('Please select a file.');
     }
 
     const formData: FormData = new FormData();
 
-    for (const key in params) {
-      if (params.hasOwnProperty(key)) {
-        formData.append(key, params[key]);
-      }
-    }
     filesList.forEach(fileItem => {
       formData.append(fileItem.name, fileItem);
     });

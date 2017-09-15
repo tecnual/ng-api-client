@@ -10,11 +10,12 @@ import { UploadService } from './upload.service';
 @NgModule({
   imports: [
     MomentModule,
+    CommonModule
   ],
   exports: [
     StoryComponent,
     CommonModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [
     UploadService

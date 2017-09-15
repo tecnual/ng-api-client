@@ -1,5 +1,3 @@
-// TODO: Poner la imagen del usuario en la historia.
-
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Story } from '../stories/_models/';

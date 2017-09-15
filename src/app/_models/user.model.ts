@@ -1,5 +1,6 @@
 export class User {
     _id: string;
+    avatar: File;
     userName: string;
     displayName: string;
     password: string;
@@ -11,4 +12,8 @@ export class User {
     };
     followers: string[];
     friends: string[];
+}
+export class File {
+  _id: string;
+  filename: string;
 }

@@ -4,8 +4,8 @@
   height: $navbar-height;
   padding: 0;
   margin: 0;
-  background: #55008c;
-  background: linear-gradient(to bottom right, #b7178c, #55008c); /* W3C */
+  background: $morado;
+  background: linear-gradient(to bottom right, $morado, $fucsia); /* W3C */
 
   background-color: $navbar-bg;
   @include borders($navbar-border);
@@ -25,11 +25,11 @@
     background-size: $navbar-brand-logo-size;
     @include borders($navbar-brand-border);
   }
-  .morado {
-    color: #b7178c;
+  .fucsia {
+    color: $fucsia;
   }
-  .purpura {
-    color: #55008c;
+  .morado {
+    color: $morado;
   }
   .navbar-toggler {
     color: $navbar-color;

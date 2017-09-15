@@ -9,6 +9,7 @@ export class Story {
 export class User {
   id: string;
   displayName: string;
+  avatar: File;
 }
 
 export class File {

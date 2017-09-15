@@ -1,3 +1,6 @@
+
+// TODO: Cambiar modulo de Angular Http por HttpClient.
+
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
