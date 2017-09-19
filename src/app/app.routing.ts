@@ -12,7 +12,7 @@ import { SimpleLayoutComponent } from './_modules/layouts/simple-layout.componen
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -24,27 +24,27 @@ export const routes: Routes = [
     },
     children: [
       {
-        path: 'dashboard',
-        loadChildren: './_modules/dashboard/dashboard.module#DashboardModule'
+        path: 'home',
+        loadChildren: './_modules/stories/stories.module#StoriesModule'
+      }
+    ]
+  },
+  {
+    path: 'search',
+    component: FullLayoutComponent,
+    data: {
+      title: ''
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './_modules/search/search.module#SearchModule',
       }
     ]
   },
   {
     path: 'user',
     component: SimpleLayoutComponent,
-    data: {
-      title: 'User'
-    },
-    children: [
-      {
-        path: '',
-        loadChildren: './_modules/user/user.module#UserModule',
-      }
-    ]
-  },
-  {
-    path: ':user',
-    component: FullLayoutComponent,
     data: {
       title: 'User'
     },
@@ -95,15 +95,15 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'search',
+    path: ':user',
     component: FullLayoutComponent,
     data: {
-      title: ''
+      title: 'User'
     },
     children: [
       {
         path: '',
-        loadChildren: './_modules/search/search.module#SearchModule',
+        loadChildren: './_modules/user/user.module#UserModule',
       }
     ]
   }

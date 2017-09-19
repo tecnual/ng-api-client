@@ -1,26 +1,24 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MomentModule } from 'angular2-moment';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 import { NewStoryComponent } from './new-story.component';
 import { UserTimelineComponent } from './user-timeline.component';
-import { StoryComponent } from './story.component';
 
 import { StoriesService } from './_services/stories.service';
 import { StoriesRoutingModule } from './stories-routing.module';
+import { HomeTimelineComponent } from './home-timeline.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
-    FormsModule,
-    CommonModule,
-    MomentModule,
-    StoriesRoutingModule
+    StoriesRoutingModule,
+    SharedModule
   ],
   declarations: [
     NewStoryComponent,
     UserTimelineComponent,
-    StoryComponent
+    HomeTimelineComponent,
+    FileSelectDirective
   ],
   providers: [
     StoriesService

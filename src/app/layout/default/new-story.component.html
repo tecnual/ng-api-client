@@ -1,23 +1,55 @@
-<section>
-<div class="jumbotron p-2">
-  <div class="container p-0">
-    <form name="form" (ngSubmit)="f.form.valid && newStory()" #f="ngForm" novalidate>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !story.valid }">
-        <label class="sr-only" for="story">¿Qué estás pensando?</label>
-        <textarea class="form-control" rows="3" placeholder="¿Qué estás pensando?" name="story" [(ngModel)]="model.story" #story="ngModel" required></textarea>
-        <div *ngIf="f.submitted && !story.valid" class="help-block">Story required</div>
-      </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !more.valid }">
-        <label class="sr-only" for="more">Email</label>
-        <input type="text" class="form-control" placeholder="More..." name="more" [(ngModel)]="model.more" #more="ngModel"/>
-      </div>
-      <div class="form-group mb-1">
-        <button [disabled]="loading" class="btn btn-primary">Publish</button>
-        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-        />
-        <button [routerLink]="['/']" class="btn btn-outline-info">Cancel</button>
-      </div>
-    </form>
+<section class="m-0 p-0">
+  <div class="jumbotron p-2">
+    <div class="container p-0">
+      <form name="form" (ngSubmit)="f.form.valid && submitForm(f)" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !story.valid }">
+          <label class="sr-only" for="story">¿Qué estás pensando?</label>
+          <textarea id="story" maxlength="150" rows="3" class="form-control" placeholder="¿Qué estás pensando?" name="story" [(ngModel)]="model.story" #story="ngModel" required></textarea>
+          <div *ngIf="f.submitted && !story.valid" class="help-block">Story required</div>
+        </div>
+        <ul class="nav d-flex justify-content-start">
+          <li class="nav-item p-2">
+            <span data-toggle="collapse" data-target="#more" (click)="toggleMoreIcon()"><i class="icon-{{ moreIcon }}"></i></span>
+          </li>
+          <li class="nav-item p-2">
+            <label><input type="file" multiple (change)="fileChange($event)" class="form-control" name="screenshot" hidden><i class="icon-picture"></i></label>
+          </li>
+          <li class="nav-item ml-auto p-2"><span>{{ 150 - model.story?.length }}</span></li>
+        </ul>
+        <div class="form-group collapse" id="more" [ngClass]="{ 'has-error': f.submitted && !more.valid }">
+          <label class="sr-only" for="more">More</label>
+          <textarea type="text" rows="5" class="form-control" placeholder="More..." name="more" [(ngModel)]="model.more" #more="ngModel"></textarea>
+        </div>
+            <div class="container ml-0 mr-0 pl-0 pr-0">
+              <ul class="list-group row ml-0 mr-0 mb-2 pl-0 pr-0">
+                <li *ngFor="let file of filesList" class="list-group-item d-flex align-items-center justify-content-start m-0 p-0">
+                  <span class="p-1" role="tooltip" data-toggle="tooltip" data-placement="bottom" data-html="true" title="{{ file?.name }}">
+                  <img [src]="filePreviewPath[filesList.indexOf(file)]" *ngIf="filePreviewPath[filesList.indexOf(file)]" width="30"/>
+                </span>
+                  <span class="p-1">
+                  {{ file?.size / 1000 | number:'.1-2' }} KB
+                </span>
+                  <span (click)="filePreviewPath.splice(filesList.indexOf(file), 1); filesList.splice(filesList.indexOf(file),1)" class="fa fa-remove ml-auto p-1"></span>
+                  <!--
+                    <button type="button" class="btn btn-success btn-xs"
+                            (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                        <span class="icon-cloud-upload"></span> Upload
+                    </button>
+                    <button type="button" class="btn btn-warning btn-xs"
+                            (click)="item.cancel()" [disabled]="!item.isUploading">
+                        <span class="icon-ban"></span> Cancel
+                    </button>
+                    -->
+                </li>
+              </ul>
+            </div>
+            <div class= "m-2" *ngIf="queueProgress > 0">
+                      <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" role="progressbar"
+                        aria-valuemin="0" aria-valuemax="100" [attr.aria-valuenow]="queueProgress"
+                        [ngStyle]="{ 'width': queueProgress + '%' }">{{queueProgress}}%</div>
+            </div>
+            <button class="btn btn-primary" [disabled]="!f.valid" type="submit">Submit</button>
+      </form>
+    </div>
   </div>
-</div>
 </section>

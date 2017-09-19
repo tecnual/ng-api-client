@@ -1,11 +1,15 @@
 <section>
 <div class="jumbotron">
   <div class="container">
-    <h2>Account Settings</h2>
-    <form name="form-horizontal" (ngSubmit)="f.form.valid && saveSettings()" #f="ngForm" novalidate>
+    <h2>Edit Settings</h2>
+    <form name="form-horizontal" (ngSubmit)="f.form.valid && submitForm(f)" #f="ngForm" novalidate>
+      <div class="edit-avatar mb-2">
+        <img [src]="avatarUrl" width="150" />
+        <label class="edit-avatar-text"><input type="file" (change)="fileChange($event)" class="form-control" name="screenshot" hidden>Edit <i class="icon-note"></i></label>
+      </div>
       <label class="sr-only" for="displayName">Name</label>
       <div class="input-group" [ngClass]="{ 'has-error': f.submitted && !displayName.valid }">
-        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        <span class="input-group-addon"><i class="icon-user"></i></span>
         <span class="input-group-addon">Name</span>
         <input type="text" class="form-control" placeholder="Name" name="displayName" [(ngModel)]="user.displayName" #displayName="ngModel" required />
         <div *ngIf="f.submitted && !displayName.valid" class="help-block">Name is required</div>
@@ -13,17 +17,23 @@
       <br>
       <label class="sr-only" for="email">Email</label>
       <div class="input-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-        <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+        <div class="input-group-addon"><i class="icon-envelope"></i></div>
         <div class="input-group-addon">Email</div>
         <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="user.email" #email="ngModel" required />
         <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+      </div>
+      <br>
+      <label class="sr-only" for="info">Info</label>
+      <div class="input-group" [ngClass]="{ 'has-error': f.submitted && !info.valid }">
+        <div class="input-group-addon"><i class="icon-info"></i></div>
+        <textarea type="text" rows="5" class="form-control" placeholder="About me..." name="info" [(ngModel)]="user.info" #info="ngModel"></textarea>
       </div>
       <br>
       <div class="form-group">
         <button [disabled]="loading" class="btn btn-primary">Save Settings</button>
         <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
         />
-        <a [routerLink]="['/']" class="btn btn-outline-info">Cancel</a>
+        <a [routerLink]="['/']" class="btn btn-outline-secondary">Cancel</a>
       </div>
     </form>
   </div>

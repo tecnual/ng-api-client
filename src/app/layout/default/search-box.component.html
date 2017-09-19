@@ -1,0 +1,7 @@
+<form name="form" (ngSubmit)="f.form.valid && buscar()" #f="ngForm" novalidate>
+  <div class="input-group mb-3" [ngClass]="{ 'has-error': f.submitted && !search.valid }">
+    <button class="input-group-addon"><i class="icon-magnifier"></i></button>
+    <input type="text" class="form-control" placeholder="Search..." name="search" [(ngModel)]="model.search" #search="ngModel"/>
+    <div *ngIf="f.submitted && !search.valid" class="help-block">Required</div>
+  </div>
+</form>
